@@ -3,8 +3,8 @@ import { View, Text, FlatList, TouchableOpacity, TextInput, Image } from 'react-
 var data = require('../data/data');
 export default class MainContact extends Component {
     static navigationOptions = {
-        title: 'Home',
-        
+        header: null,
+
     };
     render() {
         return (

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
 export default class EditContact extends Component {
     static navigationOptions = {
-        title : 'Edit',
+        header: null,
     };
+    _handleExit = () => {
+        this.props.navigation.navigate('Home');
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity style={{ padding: 5 }}>
+                    <TouchableOpacity style={{ padding: 5 }} onPress={this._handleExit}>
                         <Image source={require('../image/exit.png')} style={{ width: 35, height: 35 }}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ padding: 5 }}>
@@ -16,7 +19,7 @@ export default class EditContact extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center', flex: 45 }}>
-                    <Image source={require('../image/user.png')} style={{ width: 200, height: 200 ,marginTop:50 }}></Image>
+                    <Image source={require('../image/user.png')} style={{ width: 200, height: 200, marginTop: 50 }}></Image>
                 </View>
                 <View style={{ flex: 45, alignItems: "center" }}>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
