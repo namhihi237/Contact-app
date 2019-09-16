@@ -4,6 +4,13 @@ export default class EditContact extends Component {
     static navigationOptions = {
         header: null,
     };
+    constructor(props) {
+        super(props);
+        this.state = {
+            textName: this.props.navigation.getParam('name'),
+            textPhone: this.props.navigation.getParam('phone'),
+        }
+    }
     _handleExit = () => {
         this.props.navigation.navigate('Home');
     }
@@ -23,10 +30,15 @@ export default class EditContact extends Component {
                 </View>
                 <View style={{ flex: 45, alignItems: "center" }}>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <TextInput style={styles.textInput}></TextInput>
+                        <TextInput style={styles.textInput}
+                            value={this.props.navigation.getParam('name')}></TextInput>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <TextInput style={styles.textInput} keyboardType="numeric" autoCompleteType='tel'></TextInput>
+                        <TextInput style={styles.textInput}
+                            keyboardType="numeric"
+                            autoCompleteType='tel'
+                            value={this.props.navigation.getParam('phone')}>
+                        </TextInput>
                     </View>
                 </View>
             </View>
@@ -43,7 +55,5 @@ const styles = StyleSheet.create({
         width: 270,
         marginBottom: 30,
         padding: 3
-
-
     }
 });
