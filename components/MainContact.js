@@ -4,6 +4,7 @@ var data = require('../data/data');
 export default class MainContact extends Component {
     static navigationOptions = {
         title: 'Home',
+        
     };
     render() {
         return (
@@ -18,7 +19,7 @@ export default class MainContact extends Component {
                     <FlatList style={{ marginTop: 5 }}
                         data={data} renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity style={{ height: 100 }} onPress={this._toEdittContact} >
+                                <TouchableOpacity style={{ height: 100 }} onPress={this._toEditContact} >
                                     <View>
                                         <View style={{ flexDirection: 'row', marginBottom: 30, justifyContent: 'space-between' }}>
                                             <Image source={require('../image/user.png')} style={{ width: 35, height: 35, marginBottom: 5 }}></Image>
@@ -41,11 +42,12 @@ export default class MainContact extends Component {
             </View>
         );
     }
+    _toEditContact = () => {
+        this.props.navigation.navigate('Edit');
+    }
     _toAddContact = () => {
         this.props.navigation.navigate('Add');
     }
-    _toEdittContact = () => {
-        this.props.navigation.navigate('Edit');
-    }
+
 }
 

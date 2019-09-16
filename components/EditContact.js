@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
 export default class EditContact extends Component {
     static navigationOptions = {
-        title: 'Edit Contact',
+        title : 'Edit',
     };
     render() {
         return (
@@ -16,15 +16,13 @@ export default class EditContact extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center', flex: 45 }}>
-                    <Image source={require('../image/user.png')} style={{ width: 200, height: 100 }}></Image>
+                    <Image source={require('../image/user.png')} style={{ width: 200, height: 200 ,marginTop:50 }}></Image>
                 </View>
                 <View style={{ flex: 45, alignItems: "center" }}>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <Text style={{ marginTop: 10, fontSize: 20 }}>Name: </Text>
                         <TextInput style={styles.textInput}></TextInput>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <Text style={{ marginTop: 10, fontSize: 20 }}>Phone: </Text>
                         <TextInput style={styles.textInput} keyboardType="numeric" autoCompleteType='tel'></TextInput>
                     </View>
                 </View>
