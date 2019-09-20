@@ -1,31 +1,51 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Actions } from 'react-native-router-flux';
+
+var user = {
+    name: '',
+    phone: '',
+};
 export default class EditContact extends Component {
     static navigationOptions = {
         header: null,
     };
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             textName: '',
             textPhone: '',
+
         }
     }
-    _handleChangeTextName = () => {
-        this.setState((previous) => {
-            ({ textName: previous.textName });
-        });
+    _setDataList = async () => {
+        var use_1 = user;
+        let key = this.state.textPhone;
+        use_1.name = this.state.textName;
+        use_1.phone = this.state.textPhone;
+        if (use_1.name === '' || use_1.phone === '') {
+            Alert.alert('Nhap day du thong tin');
+        }
+        else {
+            try {
+                await AsyncStorage.setItem(key, JSON.stringify(use_1));
+                Actions.mainAppScreen()
+            }
+            catch (e) {
+                console.log(e);
+            }
+        }
     }
-    _handleChangeTextPhone = () => {
-        this.setState((previous) => {
-            ({ textPhone: previous.textPhone });
-        })
+    _handleChangeTextName = (text) => {
+        this.setState({ textName: text });
     }
-    _addContact = () => {
-
+    _handleChangeTextPhone = (text) => {
+        this.setState({ textPhone: text })
     }
     _handleExit = () => {
-        this.props.navigation.navigate('Home');
+        // Actions.mainAppScreen();
+        Actions.pop();
     }
     render() {
         return (
@@ -34,7 +54,7 @@ export default class EditContact extends Component {
                     <TouchableOpacity style={{ padding: 5 }} onPress={this._handleExit}>
                         <Image source={require('../image/exit.png')} style={{ width: 35, height: 35 }}></Image>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5 }} onPress={this._addContact}>
+                    <TouchableOpacity style={{ padding: 5 }} onPress={this._setDataList}>
                         <Image source={require('../image/tick.png')} style={{ width: 35, height: 35 }}></Image>
                     </TouchableOpacity>
                 </View>
@@ -44,11 +64,12 @@ export default class EditContact extends Component {
                 <View style={{ flex: 45, alignItems: "center" }}>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
                         <Text style={{ marginTop: 10, fontSize: 20 }}>Name: </Text>
-                        <TextInput style={styles.textInput}></TextInput>
+                        <TextInput style={styles.textInput} onChangeText={this._handleChangeTextName}></TextInput>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
                         <Text style={{ marginTop: 10, fontSize: 20 }}>Phone: </Text>
-                        <TextInput style={styles.textInput} keyboardType="numeric" autoCompleteType='tel'></TextInput>
+                        <TextInput style={styles.textInput} keyboardType="numeric" autoCompleteType='tel'
+                            onChangeText={this._handleChangeTextPhone}></TextInput>
                     </View>
                 </View>
             </View>

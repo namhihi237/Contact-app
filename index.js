@@ -3,7 +3,6 @@
  */
 
 import { AppRegistry } from 'react-native';
-import App from './App';
+import App from './src/MainApp';
 import { name as appName } from './app.json';
-import EditContact from './components/EditContact';
 AppRegistry.registerComponent(appName, () => App);

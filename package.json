@@ -8,10 +8,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.1",
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",
+    "react-native-router-flux": "^4.0.6",
+    "react-native-search-filter": "^0.1.5",
     "react-navigation": "^4.0.5",
     "react-navigation-stack": "^1.7.3"
   },
