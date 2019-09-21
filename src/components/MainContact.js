@@ -30,15 +30,15 @@ export default class MainContact extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.search}>
-                    <Image source={require('../image/search.png')} style={{
-                        width: 25, height: 25, marginTop: 3, marginLeft: 2
-                    }}></Image>
+                    <Image
+                        source={require('../image/search.png')}
+                        style={styles.searchButton}>
+                    </Image>
                     <SearchInput
                         style={styles.searchInput}
                         placeholder="Type a message to search"
                     />
                 </View>
-
                 <View style={{ flex: 80 }}>
                     <FlatList style={{ marginTop: 5 }}
                         data={this.state.dataList}
@@ -49,22 +49,30 @@ export default class MainContact extends Component {
                                 <TouchableOpacity style={{ height: 100 }}
                                     onPress={() => { Actions.editContactScreen({ name: item.name, phone: item.phone }); }} >
                                     <View>
-                                        <View style={{ flexDirection: 'row', marginBottom: 30, justifyContent: 'space-between' }}>
-                                            <Image source={require('../image/user.png')} style={{ width: 35, height: 35, marginBottom: 5 }}></Image>
-                                            <Text style={{ textAlign: 'center', marginLeft: 25, fontSize: 23 }}>{item.name}</Text>
-                                            <Image source={require('../image/phone.png')} style={{ height: 35, width: 35, marginRight: 3 }}></Image>
+                                        <View style={styles.itemContainer}>
+                                            <Image
+                                                source={require('../image/user.png')}
+                                                style={styles.userButton}>
+                                            </Image>
+                                            <Text style={styles.textName}>{item.name}</Text>
+                                            <Image
+                                                source={require('../image/phone.png')}
+                                                style={styles.phoneButton}>
+                                            </Image>
                                         </View>
                                         <View style={{ backgroundColor: "black", height: 1 }}></View>
                                     </View>
                                 </TouchableOpacity>
                             );
                         }}>
-
                     </FlatList>
                 </View>
-                <View style={{ flex: 10, flexDirection: 'row-reverse', alignItems: 'center', backgroundColor: '#F5F5DC' }}>
+                <View style={styles.addButtonContainer}>
                     <TouchableOpacity onPress={this._toAddContact}>
-                        <Image source={require('../image/add.png')} style={{ height: 35, width: 35, marginRight: 10 }}></Image>
+                        <Image
+                            source={require('../image/add.png')}
+                            style={styles.addButton}>
+                        </Image>
                     </TouchableOpacity>
                 </View>
             </View >
@@ -76,6 +84,11 @@ export default class MainContact extends Component {
     }
 }
 const styles = StyleSheet.create({
+    itemContainer: {
+        flexDirection: 'row',
+        marginBottom: 30,
+        justifyContent: 'space-between'
+    },
     search: {
         borderColor: "black",
         borderWidth: 1,
@@ -85,9 +98,41 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 3,
     },
+    searchButton: {
+        width: 25,
+        height: 25,
+        marginTop: 3,
+        marginLeft: 2
+    },
     searchInput: {
         padding: 5,
         width: 300,
+    },
+    addButtonContainer: {
+        flex: 10,
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        backgroundColor: '#F5F5DC'
+    },
+    addButton: {
+        height: 35,
+        width: 35,
+        marginRight: 10
+    },
+    userButton: {
+        width: 35,
+        height: 35,
+        marginBottom: 5
+    },
+    textName: {
+        textAlign: 'center',
+        marginLeft: 25,
+        fontSize: 23
+    },
+    phoneButton: {
+        height: 35,
+        width: 35,
+        marginRight: 3
     }
 });
 

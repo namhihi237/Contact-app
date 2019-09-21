@@ -50,26 +50,42 @@ export default class EditContact extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flex: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={styles.exitTickContaine}>
                     <TouchableOpacity style={{ padding: 5 }} onPress={this._handleExit}>
-                        <Image source={require('../image/exit.png')} style={{ width: 35, height: 35 }}></Image>
+                        <Image
+                            source={require('../image/exit.png')}
+                            style={styles.exitTickButton}>
+                        </Image>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ padding: 5 }} onPress={this._setDataList}>
-                        <Image source={require('../image/tick.png')} style={{ width: 35, height: 35 }}></Image>
+                        <Image
+                            source={require('../image/tick.png')}
+                            style={styles.exitTickButton}>
+                        </Image>
                     </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center', flex: 45 }}>
-                    <Image source={require('../image/user.png')} style={{ width: 200, height: 200 }}></Image>
+                    <Image
+                        source={require('../image/user.png')}
+                        style={styles.user}>
+                    </Image>
                 </View>
-                <View style={{ flex: 45, alignItems: "center" }}>
+                <View style={styles.textInputContainer}>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <Text style={{ marginTop: 10, fontSize: 20 }}>Name: </Text>
-                        <TextInput style={styles.textInput} onChangeText={this._handleChangeTextName}></TextInput>
+                        <Text style={styles.label}>Name: </Text>
+                        <TextInput
+                            style={styles.textInput}
+                            onChangeText={this._handleChangeTextName}>
+                        </TextInput>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 5 }}>
-                        <Text style={{ marginTop: 10, fontSize: 20 }}>Phone: </Text>
-                        <TextInput style={styles.textInput} keyboardType="numeric" autoCompleteType='tel'
-                            onChangeText={this._handleChangeTextPhone}></TextInput>
+                        <Text style={styles.label}>Phone: </Text>
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            autoCompleteType='tel'
+                            onChangeText={this._handleChangeTextPhone}>
+                        </TextInput>
                     </View>
                 </View>
             </View>
@@ -86,5 +102,25 @@ const styles = StyleSheet.create({
         width: 270,
         marginBottom: 30,
         padding: 3
+    },
+    exitTickContaine: {
+        flex: 10, flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    exitTickButton: {
+        width: 35,
+        height: 35
+    },
+    user: {
+        width: 200,
+        height: 200
+    },
+    textInputContainer: {
+        flex: 45,
+        alignItems: "center"
+    },
+    label: {
+        marginTop: 10,
+        fontSize: 20
     }
 });
