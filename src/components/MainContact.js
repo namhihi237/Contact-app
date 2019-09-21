@@ -46,23 +46,25 @@ export default class MainContact extends Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity style={{ height: 100 }}
-                                    onPress={() => { Actions.editContactScreen({ name: item.name, phone: item.phone }); }} >
-                                    <View>
-                                        <View style={styles.itemContainer}>
+                                <View style={{ height: 100 }}>
+                                    <View style={styles.itemContainer}>
+                                        <TouchableOpacity
+                                            onPress={() => { Actions.editContactScreen({ name: item.name, phone: item.phone }); }} >
                                             <Image
                                                 source={require('../image/user.png')}
                                                 style={styles.userButton}>
                                             </Image>
-                                            <Text style={styles.textName}>{item.name}</Text>
+                                        </TouchableOpacity>
+                                        <Text style={styles.textName}>{item.name}</Text>
+                                        <TouchableOpacity>
                                             <Image
                                                 source={require('../image/phone.png')}
                                                 style={styles.phoneButton}>
                                             </Image>
-                                        </View>
-                                        <View style={{ backgroundColor: "black", height: 1 }}></View>
+                                        </TouchableOpacity>
                                     </View>
-                                </TouchableOpacity>
+                                    <View style={{ backgroundColor: "black", height: 1 }}></View>
+                                </View>
                             );
                         }}>
                     </FlatList>
