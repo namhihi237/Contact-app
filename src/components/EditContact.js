@@ -3,18 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'reac
 import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
 var user = {
+    id:'',
     name: '',
     phone: '',
 };
 export default class EditContact extends Component {
-    static navigationOptions = {
-        header: null,
-    };
     constructor (props) {
         super(props);
         this.state = {
             textName: this.props.navigation.getParam('name'),
             textPhone: this.props.navigation.getParam('phone'),
+
         }
     }
     _handleExit = () => {
@@ -22,9 +21,10 @@ export default class EditContact extends Component {
     }
     _handleOk = async () => {
         var use_1 = user;
-        let key = this.state.textPhone;
+        use_1.id =  this.props.navigation.getParam('id');
         use_1.name = this.state.textName;
         use_1.phone = this.state.textPhone;
+        let key = use_1.id;
         if (use_1.name === '' || use_1.phone === '') {
             Alert.alert('Nhap day du thong tin');
         }

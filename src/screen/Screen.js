@@ -7,17 +7,17 @@ export const SCREENS = {
     Main: {
         key: "mainAppScreen", //key de goi chuyen man hinh
         component: MainContact, //ten file da khai bao
-        hiveNavBar: true
+        hideNavBar: true
     },
     addContact: {
         key: "addContactScreen",
         component: AddContact,
-        hiveNavBar: true
+        hideNavBar: true,
     },
     editContact: {
         key: "editContactScreen",
         component: EditContact,
-        hiveNavBar: true
+        hideNavBar: true
     },
 }
 export default SCREENS;

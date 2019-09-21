@@ -4,9 +4,6 @@ import { Actions } from 'react-native-router-flux';
 import AsyncStorage from '@react-native-community/async-storage';
 import SearchInput, { createFilter } from 'react-native-search-filter';
 export default class MainContact extends Component {
-    static navigationOptions = {
-        header: null,
-    };
     constructor (props) {
         super(props);
         this.state = {
@@ -17,6 +14,7 @@ export default class MainContact extends Component {
         try {
             let keys = await AsyncStorage.getAllKeys();
             keys.forEach(async (inkey) => {
+                console.log(inkey);
                 let user = JSON.parse(await AsyncStorage.getItem(inkey));
                 let data = this.state.dataList.concat(user);
                 this.setState({ dataList: data });
@@ -49,7 +47,7 @@ export default class MainContact extends Component {
                                 <View style={{ height: 100 }}>
                                     <View style={styles.itemContainer}>
                                         <TouchableOpacity
-                                            onPress={() => { Actions.editContactScreen({ name: item.name, phone: item.phone }); }} >
+                                            onPress={() => { Actions.editContactScreen({ name: item.name, phone: item.phone, id: item.id }); }} >
                                             <Image
                                                 source={require('../image/user.png')}
                                                 style={styles.userButton}>

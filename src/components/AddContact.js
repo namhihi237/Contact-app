@@ -4,26 +4,24 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Actions } from 'react-native-router-flux';
 
 var user = {
+    id : '',
     name: '',
     phone: '',
 };
 export default class EditContact extends Component {
-    static navigationOptions = {
-        header: null,
-    };
     constructor (props) {
         super(props);
         this.state = {
             textName: '',
             textPhone: '',
-
         }
     }
     _setDataList = async () => {
         var use_1 = user;
-        let key = this.state.textPhone;
+        use_1.id = Date.now().toString();
         use_1.name = this.state.textName;
         use_1.phone = this.state.textPhone;
+        let key = use_1.id;
         if (use_1.name === '' || use_1.phone === '') {
             Alert.alert('Nhap day du thong tin');
         }
@@ -44,7 +42,6 @@ export default class EditContact extends Component {
         this.setState({ textPhone: text })
     }
     _handleExit = () => {
-        // Actions.mainAppScreen();
         Actions.pop();
     }
     render() {
